@@ -1,0 +1,43 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechnicAppSQL"
+        xmlns:mylocal="clr-namespace:PresentationLayer.ViewModel;assembly=PresentationLayer"
+        xmlns:Model="clr-namespace:PresentationLayer.Model;assembly=PresentationLayer" x:Class="TechnicAppSQL.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="534.586" Width="575">
+    <Window.Resources>
+        <mylocal:IssueViewModel x:Key="IssueViewModel"/>
+        <mylocal:EventViewModel2 x:Key="EventModel"/>
+        <mylocal:PersonelViewModel x:Key="ScoreBoard"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid  Name="dataGrid1" DataContext="{StaticResource ResourceKey=IssueViewModel}" ItemsSource="{Binding issueList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="168" VerticalAlignment="Top" Width="567">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Binding="{Binding IssueID}" ClipboardContentBinding="{x:Null}" Header="IssueID"/>
+                <DataGridTextColumn Binding="{Binding SolvedBy}" ClipboardContentBinding="{x:Null}" Header="Solved By"/>
+                <DataGridTextColumn Binding="{Binding Subject}" ClipboardContentBinding="{x:Null}" Header="Subject"/>
+                <DataGridTextColumn Binding="{Binding Description}" ClipboardContentBinding="{x:Null}" Header="Description"/>
+                <DataGridTextColumn Binding="{Binding ProductName}" ClipboardContentBinding="{x:Null}" Header="Product Name"/>
+                <DataGridCheckBoxColumn Binding="{Binding Solved}" ClipboardContentBinding="{x:Null}" Header="Solved" IsReadOnly="True"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Command="{Binding Click}" DataContext="{StaticResource ResourceKey=EventModel}" Content="Solve This!" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Width="86" Height="35" Click="Button_Click" FontSize="14" FontWeight="Bold"/>
+        <DataGrid Name="scoreBoard" DataContext="{StaticResource ResourceKey=ScoreBoard}" ItemsSource="{Binding scoreList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="168" Margin="305,220,0,0" VerticalAlignment="Top" Width="262">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding PersonelID}" ClipboardContentBinding="{x:Null}" Header="Personel ID" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding PersonelName}" ClipboardContentBinding="{x:Null}" Header="Personel Name" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding SolvedCount}" ClipboardContentBinding="{x:Null}" Header="Solved Score" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Score Board" HorizontalAlignment="Left" Margin="321,190,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+
+    </Grid>
+</Window>
