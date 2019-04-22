@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using PresentationLayer.Model;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,19 @@ namespace PresentationLayer.ViewModel
         public ObservableCollection<PresentationLayer.Model.Issue> issueList { get; set; }
         public IssueViewModel()
         {
+            Messenger.Default.Register<PresentationLayer.Model.Issue>(this, NotifyMe);
+
             DataAccessService service = new DataAccessService();
             var result = service.GetAllIssues();
             issueList = new ObservableCollection<Model.Issue>(result);   
         }
-        public static Issue selectedItem;
+        public void NotifyMe(PresentationLayer.Model.Issue message)
+        {
+            //string token = message.Notification;  // "change"
+            //DisplayAlert("Test", "Hi!", "OK");
+            this.SolveThis(message);
+        }
+        public Issue selectedItem;
         public Issue SelectedItem
         {
             get

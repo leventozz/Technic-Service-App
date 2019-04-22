@@ -29,7 +29,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Command="{Binding Click}" DataContext="{StaticResource ResourceKey=EventModel}" Content="Solve This!" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Width="86" Height="35" Click="Button_Click" FontSize="14" FontWeight="Bold"/>
+        <Button Command="{Binding Click}" CommandParameter="{Binding ElementName=dataGrid1,Path=SelectedItem,UpdateSourceTrigger=PropertyChanged}" DataContext="{StaticResource ResourceKey=EventModel}" Content="Solve This!" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Width="86" Height="35" Click="Button_Click" FontSize="14" FontWeight="Bold"/>
         <DataGrid Name="scoreBoard" DataContext="{StaticResource ResourceKey=ScoreBoard}" ItemsSource="{Binding scoreList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="168" Margin="305,220,0,0" VerticalAlignment="Top" Width="262">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding PersonelID}" ClipboardContentBinding="{x:Null}" Header="Personel ID" IsReadOnly="True"/>

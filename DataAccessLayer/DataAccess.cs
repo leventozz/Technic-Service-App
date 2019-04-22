@@ -9,7 +9,7 @@ namespace DataAccessLayer
 {
     public class DataAccess : IDataAccess
     {
-        string connectionString = "Data Source=ASUS-PC\\SQLEXPRESS;Initial Catalog=TechnicService;Integrated Security=True";
+        string connectionString = "Data Source=.;Initial Catalog=TechnicService;Integrated Security=True";
         public void Add()
         {
             throw new NotImplementedException();

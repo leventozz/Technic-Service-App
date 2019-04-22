@@ -36,7 +36,7 @@ namespace PresentationLayer.ViewModel
                 OnPropertyChanged("LoggedPersonel");
             }
         }
-        public static int count;
+        private int count;
 
         public int Count
         {
@@ -61,15 +61,17 @@ namespace PresentationLayer.ViewModel
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-        //public int SolvedCountIncrease()
-        //{
-        //    PersonelViewModel pvm = new PersonelViewModel();
-        //    var temp = scoreList.FirstOrDefault(x => x.PersonelID == LoggedPersonel.PersonelID);
-        //    if (temp != null)
-        //        var t = temp.SolvedCount++;
-        //    var t = int.Parse(temp.SolvedCount);
-        //    return count;
-        //}
+        public int SolvedCountIncrease()
+        {
+            PersonelViewModel pvm = new PersonelViewModel();
+            Personel temp = scoreList.FirstOrDefault(x => x.PersonelID == LoggedPersonel.PersonelID);
+            if (temp != null)
+            {
+                Count = temp.SolvedCount++;
+            }
+            //var t = int.Parse(temp.SolvedCount);
+            return count;
+        }
 
 
 

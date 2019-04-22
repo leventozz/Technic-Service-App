@@ -1,4 +1,7 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using PresentationLayer.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,13 +15,15 @@ namespace PresentationLayer.ViewModel
     {
         public EventViewModel2()
         {
-            Click = new RelayCommand(UpdateClick);
+            Click = new RelayCommand<Issue>(UpdateClick);
         }
-        public RelayCommand Click { get; set; }
-        private void UpdateClick()
+        public RelayCommand<Issue> Click { get; set; }
+        private void UpdateClick(Issue param)
         {
-            IssueViewModel ivm = new IssueViewModel();
-            ivm.SolveThis(ivm.SelectedItem);
+            //IssueViewModel ivm = new IssueViewModel();
+            //ivm.SolveThis(ivm.SelectedItem);
+            //var myMessage = new NotificationMessage("change");
+            Messenger.Default.Send<PresentationLayer.Model.Issue>(param);
         }
         
 
